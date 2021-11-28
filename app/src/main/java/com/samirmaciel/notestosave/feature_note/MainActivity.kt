@@ -1,4 +1,4 @@
-package com.samirmaciel.notestosave
+package com.samirmaciel.notestosave.feature_note
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,24 +15,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NotesToSaveTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
+
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    NotesToSaveTheme {
-        Greeting("Android")
-    }
-}
