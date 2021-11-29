@@ -1,4 +1,4 @@
-package com.samirmaciel.notestosave.feature_note
+package com.samirmaciel.notestosave
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
