@@ -5,10 +5,7 @@ import androidx.room.Room
 import com.samirmaciel.notestosave.feature_note.data.data_source.NoteDatabase
 import com.samirmaciel.notestosave.feature_note.data.repository.NoteRepositoryImpl
 import com.samirmaciel.notestosave.feature_note.domain.repository.NoteRepository
-import com.samirmaciel.notestosave.feature_note.domain.use_case.AddNote
-import com.samirmaciel.notestosave.feature_note.domain.use_case.DeleteNote
-import com.samirmaciel.notestosave.feature_note.domain.use_case.GetNotes
-import com.samirmaciel.notestosave.feature_note.domain.use_case.NoteUseCases
+import com.samirmaciel.notestosave.feature_note.domain.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,8 +19,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNoteDatabase(app : Application): NoteDatabase{
-
+    fun provideNoteDatabase(app: Application): NoteDatabase {
         return Room.databaseBuilder(
             app,
             NoteDatabase::class.java,
@@ -33,17 +29,18 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNoteRepositry(db : NoteDatabase): NoteRepository{
+    fun provideNoteRepository(db: NoteDatabase): NoteRepository {
         return NoteRepositoryImpl(db.noteDao)
     }
 
     @Provides
     @Singleton
-    fun provideNoteUseCases(repository: NoteRepository): NoteUseCases{
+    fun provideNoteUseCases(repository: NoteRepository): NoteUseCases {
         return NoteUseCases(
             getNotes = GetNotes(repository),
             deleteNote = DeleteNote(repository),
-            addNote = AddNote(repository)
+            addNote = AddNote(repository),
+            getNote = GetNote(repository)
         )
     }
 }
